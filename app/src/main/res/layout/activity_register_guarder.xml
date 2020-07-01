@@ -115,6 +115,20 @@
                     android:padding="20dp"
                     android:textColor="@color/colorWhite"
                     android:textColorHint="@color/colorWhite" />
+                <EditText
+                    android:id="@+id/txtInputServicios"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit"
+                    android:drawableLeft="@drawable/ic_people_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Servicios"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite" />
 
                 <Button
                     android:id="@+id/btnRegister"

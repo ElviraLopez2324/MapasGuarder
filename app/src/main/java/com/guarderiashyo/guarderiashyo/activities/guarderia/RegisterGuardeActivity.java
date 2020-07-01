@@ -36,7 +36,7 @@ public class RegisterGuardeActivity extends AppCompatActivity {
     AlertDialog mDialog;
     //Views
     Button mBtnRegister;
-    EditText txtInputNombre, txtInputEmail, txtInputPass, txtInputRuc, txtInputTrabajadores;
+    EditText txtInputNombre, txtInputEmail, txtInputPass, txtInputRuc, txtInputTrabajadores, txtInputServicios;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,7 @@ public class RegisterGuardeActivity extends AppCompatActivity {
         txtInputPass = findViewById(R.id.txtInputPassword);
         txtInputRuc = findViewById(R.id.txtInputRuc);
         txtInputTrabajadores = findViewById(R.id.txtInputTrabajadores);
+        txtInputServicios = findViewById(R.id.txtInputServicios);
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +77,12 @@ public class RegisterGuardeActivity extends AppCompatActivity {
         final String email = txtInputEmail.getText().toString();
         final String ruc = txtInputRuc.getText().toString();
         final String trabajadores = txtInputTrabajadores.getText().toString();
+        final String servicios = txtInputServicios.getText().toString();
         final String password = txtInputPass.getText().toString();
         if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !ruc.isEmpty() && !trabajadores.isEmpty()){
             if(password.length() >= 6){
                 mDialog.show();
-                register(name,email, password, ruc, trabajadores);
+                register(name,email, password, ruc, trabajadores,servicios);
 
             }else{
                 Toast.makeText(this, "min 6 caracteres", Toast.LENGTH_SHORT).show();
@@ -89,14 +91,14 @@ public class RegisterGuardeActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
-    void register(final String name, final String email,final String password, final String ruc, final String trabajadores ){
+    void register(final String name, final String email,final String password, final String ruc, final String trabajadores, final String servicios ){
         mAuthProvider.register(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 mDialog.hide();
                 if(task.isSuccessful()){
                     String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    Guarderia guarderia =  new Guarderia(id, name, email, ruc, trabajadores);
+                    Guarderia guarderia =  new Guarderia(id, name, email, ruc, trabajadores, servicios);
                     create(guarderia);
                 }else{
                     Toast.makeText(RegisterGuardeActivity.this, "No se pudo registrar", Toast.LENGTH_SHORT).show();

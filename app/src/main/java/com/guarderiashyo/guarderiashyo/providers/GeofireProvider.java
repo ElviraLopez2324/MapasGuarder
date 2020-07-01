@@ -12,8 +12,8 @@ public class GeofireProvider {
     private DatabaseReference mDatabase;
     private GeoFire mGeofire;
 
-    public GeofireProvider () {
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Guarderia_activa");
+    public GeofireProvider (String reference) {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(reference);
         mGeofire = new GeoFire(mDatabase);
     }
 
@@ -26,8 +26,8 @@ public class GeofireProvider {
     }
 
 
-    public GeoQuery getActiveGuarderias(LatLng latLng) {
-        GeoQuery geoQuery = mGeofire.queryAtLocation(new GeoLocation(latLng.latitude, latLng.longitude), 10);
+    public GeoQuery getActiveGuarderias(LatLng latLng, double radius) {
+        GeoQuery geoQuery = mGeofire.queryAtLocation(new GeoLocation(latLng.latitude, latLng.longitude), radius);
         geoQuery.removeAllListeners();
         return geoQuery;
     }
@@ -37,7 +37,7 @@ public class GeofireProvider {
     }
 
     public DatabaseReference isGuarderiaWorking(String idGuarderia) {
-        return FirebaseDatabase.getInstance().getReference().child("guarderia_working").child(idGuarderia);
+        return FirebaseDatabase.getInstance().getReference().child("guarderias_working").child(idGuarderia);
     }
 
 }

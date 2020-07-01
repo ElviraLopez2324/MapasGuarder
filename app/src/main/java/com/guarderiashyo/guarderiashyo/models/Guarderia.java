@@ -6,13 +6,23 @@ public class Guarderia {
     String email;
     String ruc;
     String trabajadores;
+    String servicios;
 
-    public Guarderia(String id, String name, String email, String ruc, String trabajadores) {
+    public Guarderia(String id, String name, String email, String ruc, String trabajadores, String servicios) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.ruc = ruc;
         this.trabajadores = trabajadores;
+        this.servicios = servicios;
+    }
+
+    public String getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(String servicios) {
+        this.servicios = servicios;
     }
 
     public String getId() {

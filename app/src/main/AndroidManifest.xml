@@ -12,7 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.guarderia.MapGuarderiaActivity"></activity>
+        <activity android:name=".activities.client.CalificationGuarderiaActivity"></activity>
+        <activity android:name=".activities.guarderia.CalificationClientActivity" />
+        <activity android:name=".activities.guarderia.MapGuarderiaBookingActivity" />
+        <activity android:name=".activities.client.MapClientBookingActivity" />
+
+        <receiver
+            android:name=".receivers.AcceptReceiver"
+            android:enabled="true" />
+        <receiver
+            android:name=".receivers.CancelReceiver"
+            android:enabled="true" />
+
+        <service android:name=".services.MyFirebaseMessagingClient">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".activities.client.RequestGuarderiaActivity" />
+        <activity
+            android:name=".activities.client.DetailRequestActivity"
+            android:parentActivityName=".activities.client.MapClientActivity" />
+        <activity android:name=".activities.guarderia.MapGuarderiaActivity" />
         <activity android:name=".activities.client.MapClientActivity" />
         <activity android:name=".activities.guarderia.RegisterGuardeActivity" />
         <activity
@@ -32,7 +54,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>
